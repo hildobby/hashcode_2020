@@ -62,9 +62,29 @@ class World(object):
             for s in sample:
                 self.all_chosen_books.add(s)
 
-        self.determine_price()
+    def greedy_algo_with_heuristic(self):
+        self.average_cost_func()
+        self.sort_libraries()
 
-    def determine_price(self):
+        counter = 0
+        for library in self.libraries_list:
+            counter += library.sign_days
+            if counter > self.scan_days:
+                break
+            tot_books = library.ship_books * (self.scan_days - counter)
+            if tot_books > library.tot_books:
+                tot_books = library.tot_books
+            self.lib_books[library.lib_id] = tot_books
+
+        for lib_id, tot_book in self.lib_books.items():
+            sample = random.sample(self.libraries[lib_id].books, k=tot_book)
+            self.chosen_books[lib_id] = sample
+
+            for s in sample:
+                self.all_chosen_books.add(s)
+
+
+    def determine_score(self):
         self.current_score = 0
         for book in self.all_chosen_books:
             self.current_score += self.scores[book]
@@ -91,3 +111,9 @@ class World(object):
         self.libraries_list = [i for i in self.libraries.values()]
 
         self.libraries_list.sort(key=lambda x: x.total_average_cost, reverse=True)
+
+    def reset(self):
+        self.lib_books = OrderedDict()
+        self.chosen_books = OrderedDict()
+        self.all_chosen_books = set()
+        self.current_score = 0
