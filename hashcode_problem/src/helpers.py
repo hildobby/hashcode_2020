@@ -28,10 +28,12 @@ def load_data(filename):
             line = l.rstrip("\n").split(" ")
             if i % 2 == 0:
                 lib_info = [int(info) for info in line]
+                print(lib_info)
             else:
                 books_info = [int(info) for info in line]
                 world.create_library(lib_id, lib_info[0], lib_info[1], lib_info[2], books_info)
                 lib_id += 1
+
             
     return world
 
@@ -53,3 +55,7 @@ if __name__ == "__main__":
     write_data(output_filename)
     print(world)
     world.average_cost_func()
+
+    world.sort_libraries()
+
+
