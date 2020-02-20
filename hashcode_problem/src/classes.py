@@ -13,6 +13,7 @@ class Library(object):
         self.sign_days = sign_days
         self.ship_books = ship_books
         self.books = books
+        self.total_cost = 0
 
 
 class World(object):
@@ -25,6 +26,7 @@ class World(object):
         self.lib_books = OrderedDict()
         self.chosen_books = OrderedDict()
         self.all_chosen_books = set()
+        self.current_score = 0
 
     def __str__(self):
         return f"Total books: {self.total_books}\n" \
@@ -60,9 +62,12 @@ class World(object):
             for s in sample:
                 self.all_chosen_books.add(s)
 
-    def determibne_price(self):
-        pass
+        self.determine_price()
 
+    def determine_price(self):
+        self.current_score = 0
+        for book in self.all_chosen_books:
+            self.current_score += self.scores[book]
 
     def average_cost_func(self):
 
@@ -72,10 +77,16 @@ class World(object):
 
             # loop through the books and count the total cost
             for books in self.libraries[library].books:
-                total_cost +=self.scores[books]
+                self.libraries[library].total_cost += self.scores[books]
 
             # define the cost function for every library
             self.libraries[library].total_average_cost = (self.libraries[library].ship_books / self.libraries[library].sign_days) \
-                                                     * (total_cost / self.libraries[library].tot_books)
+                                                     * (self.libraries[library].total_cost / self.libraries[library].tot_books)
 
 
+
+    def sort_libraries(self):
+
+        self.libraries_list = [i for i in self.libraries.values()]
+
+        self.libraries_list.sort(key=lambda x: x.total_average_cost, reverse=True)
