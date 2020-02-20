@@ -23,6 +23,8 @@ def load_data(filename):
         world = World(books, libraries, scanning, scores)
         lib_id, lib_info, books_info = 0, [], []
         for i, l in enumerate(f):
+            if l == "\n":
+                break
             line = l.rstrip("\n").split(" ")
             if i % 2 == 0:
                 lib_info = [int(info) for info in line]

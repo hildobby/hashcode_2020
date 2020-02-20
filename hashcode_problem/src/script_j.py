@@ -9,6 +9,6 @@ from helpers import load_data
 CWD = os.path.dirname(os.path.realpath(__file__))
 
 if __name__ == "__main__":
-    filename = os.path.join(CWD, "input", "a_example.txt")
+    filename = os.path.join(CWD, "input", "b_read_on.txt")
     world = load_data(filename)
     world.random_algo()
