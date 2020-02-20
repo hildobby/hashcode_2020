@@ -4,14 +4,11 @@ with open ("/Users/hildebert/gits/hashcode/hashcode_problem/src/input/a_example.
 for i in range(len(file_content)):
     file_content[i] = list(map(int, file_content[i].strip("\n").split(' ')))
 
-print(len(file_content)/2-1)
-
 input_data = {}
 input_data['total_info'] = {}
 input_data['total_info']['book_count'] = file_content[0][0]
 input_data['total_info']['library_count'] = file_content[0][2]
 input_data['total_info']['dealine'] = file_content[0][1]
-file_content[0]
 
 for j in range(int(len(file_content)/2-1)):
     input_data['library_{}'.format(j)] = {}
@@ -22,5 +19,5 @@ for j in range(int(len(file_content)/2-1)):
 
 print(input_data)
 
-with open("/Users/hildebert/gits/hashcode/hashcode_problem/src/output/output_h.txt", "a") as output_file:
-    output_file.write('Hello\n')
+#with open("/Users/hildebert/gits/hashcode/hashcode_problem/src/output/output_h.txt", "a") as output_file:
+#    output_file.write('Hello\n')
