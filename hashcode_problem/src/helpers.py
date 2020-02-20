@@ -33,7 +33,18 @@ def load_data(filename):
             
     return world
 
+def write_data(filename):
+    """
+    Write data to txt file
+    """
+    with open(filename, 'a') as f:
+        pass
+        #output_file.write()
+
 if __name__ == "__main__":
-    filename = os.path.join(CWD, "input", "a_example.txt")
-    world = load_data(filename)
+    input_filename = os.path.join(CWD, "input", "a_example.txt")
+    world = load_data(input_filename)
+    output_filename = os.path.join(CWD, "output", "a_example.txt")
+    write_data(output_filename)
     print(world)
+    world.average_cost_func()
