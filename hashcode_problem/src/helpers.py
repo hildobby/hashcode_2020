@@ -49,10 +49,11 @@ def write_data(filename, world):
             f.write("{}\n".format(' '.join(map(str,world.chosen_books[i]))))
 
 if __name__ == "__main__":
-    input_filename = os.path.join(CWD, "input", "a_example.txt")
+    text_name = "b_read_on"
+    input_filename = os.path.join(CWD, "input", "{}.txt".format(text_name))
     world = load_data(input_filename)
     world.random_algo()
-    output_filename = os.path.join(CWD, "output", "a_example.txt")
+    output_filename = os.path.join(CWD, "output", "{}.txt".format(text_name))
     write_data(output_filename, world)
     print(world)
     world.average_cost_func()

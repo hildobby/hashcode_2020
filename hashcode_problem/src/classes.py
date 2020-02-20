@@ -88,6 +88,7 @@ class World(object):
         self.current_score = 0
         for book in self.all_chosen_books:
             self.current_score += self.scores[book]
+        print("The score is: ", self.current_score)
 
     def average_cost_func(self):
 
