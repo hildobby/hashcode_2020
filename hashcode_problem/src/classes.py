@@ -25,6 +25,7 @@ class World(object):
         self.lib_books = OrderedDict()
         self.chosen_books = OrderedDict()
         self.all_chosen_books = set()
+        self.current_score = 0
 
     def __str__(self):
         return f"Total books: {self.total_books}\n" \
@@ -60,9 +61,12 @@ class World(object):
             for s in sample:
                 self.all_chosen_books.add(s)
 
-    def determibne_price(self):
-        pass
+        self.determine_price()
 
+    def determine_price(self):
+        self.current_score = 0
+        for book in self.all_chosen_books:
+            self.current_score += self.scores[book]
 
     def average_cost_func(self):
 
