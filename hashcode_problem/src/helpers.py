@@ -39,3 +39,5 @@ if __name__ == "__main__":
     filename = os.path.join(CWD, "input", "a_example.txt")
     world = load_data(filename)
     print(world)
+    world.average_cost_func()
+
