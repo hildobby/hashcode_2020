@@ -7,7 +7,12 @@ for i in range(len(file_content)):
 print(len(file_content)/2-1)
 
 input_data = {}
-input_data['info'] = file_content[0]
+input_data['total_info'] = {}
+input_data['total_info']['book_count'] = file_content[0][0]
+input_data['total_info']['library_count'] = file_content[0][2]
+input_data['total_info']['dealine'] = file_content[0][1]
+file_content[0]
+
 for j in range(int(len(file_content)/2-1)):
     input_data['library_{}'.format(j)] = {}
     input_data['library_{}'.format(j)]['book_count'] = file_content[j+1][0]
