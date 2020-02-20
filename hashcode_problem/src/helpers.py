@@ -33,21 +33,22 @@ def load_data(filename):
             
     return world
 
-def write_data(filename):
+def write_data(filename, world):
     """
     Write data to txt file
     """
-    # Clears the output file if it already exists
-    open(filename, 'w').close()
     # Writes to the output file
-    with open(filename, 'a') as f:
-        f.write("")
+    with open(filename, 'w') as f:
+        f.write("{}\n".format(str(len(world.lib_books))))
+        for i in world.lib_books.keys():
+            f.write("{} {}\n".format(str(i), str(len(world.chosen_books[i]))))
+            f.write("{}\n".format(' '.join(map(str,world.chosen_books[i]))))
 
 if __name__ == "__main__":
     input_filename = os.path.join(CWD, "input", "a_example.txt")
     world = load_data(input_filename)
-
+    world.random_algo()
     output_filename = os.path.join(CWD, "output", "a_example.txt")
-    write_data(output_filename)
+    write_data(output_filename, world)
     print(world)
     world.average_cost_func()
